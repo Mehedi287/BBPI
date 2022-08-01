@@ -8,8 +8,8 @@ const ClassRoutines = () => {
   };
   return (
     <div>
-      <h1>ALl Class Routine is here </h1>
       <button onClick={handleCreateRoutine}>Create a routine</button>
+      <h1 className="text-green-400">ALl Class Routine is here </h1>
     </div>
   );
 };

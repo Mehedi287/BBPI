@@ -1,6 +1,5 @@
 import logo from "./logo.svg";
 import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 import Home from "./components/Home/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -12,7 +11,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />}></Route>
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/" element={<Home />}></Route>
         <Route path="home" element={<Home />}></Route>
 
         <Route path="classRoutines" element={<ClassRoutines />}></Route>

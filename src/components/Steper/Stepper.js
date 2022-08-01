@@ -5,36 +5,29 @@ import MobileStepper from "@mui/material/MobileStepper";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-// import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
-// import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
-
+import { useForm } from "react-hook-form";
 import Class from "./Class/Class";
 
 import Info from "./info/Info";
-const steps = [
-  {
-    label: "Student Information",
-    description: ``,
-    element: <Info></Info>,
-  },
-  {
-    label: "Add a class",
-    description:
-      "An ad group contains one or more ads which target a shared set of keywords.",
-    element: <Class></Class>,
-  },
-  {
-    label: "Add Another Class",
-    description: `Try out different ad text to see what brings in the most customers,
-                and learn how to enhance your ads using features like ad extensions.
-                If you run into any problems with your ads, find out how to tell if
-                they're running and how to resolve approval issues.`,
-  },
-];
+import { Container } from "@mui/material";
 
 const Stepper = () => {
-  const theme = useTheme();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
   const [activeStep, setActiveStep] = React.useState(0);
+  const steps = [
+    {
+      element: <Info errors={errors} register={register}></Info>,
+    },
+    {
+      element: <Class errors={errors} register={register}></Class>,
+    },
+  ];
+
   const maxSteps = steps.length;
 
   const handleNext = () => {
@@ -45,51 +38,53 @@ const Stepper = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
+
+  const onSubmit = (data) => console.log(data);
   return (
-    <div>
-      <Box sx={{ maxWidth: 400, flexGrow: 1 }}>
-        <Paper
-          square
-          elevation={0}
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            height: 50,
-            pl: 2,
-            bgcolor: "background.default",
-          }}
-        >
-          <Typography>{steps[activeStep].label}</Typography>
-        </Paper>
-        <Box sx={{ height: 300, maxWidth: 400, width: "100%", p: 2 }}>
-          {steps[activeStep].element}
+    <Container>
+      <form onSubmit={handleSubmit(onSubmit)}>
+
+        <div className="text-green-400">dfkdjd</div>
+        <Box sx={{ flexGrow: 1 }}>
+          <Paper
+            square
+            elevation={1}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+          </Paper>
+          <Box >
+            {steps[activeStep].element}
+          </Box>
+          <MobileStepper
+            variant="text"
+            steps={maxSteps}
+            position="static"
+            activeStep={activeStep}
+            nextButton={
+              <Button
+                size="small"
+                onClick={handleNext}
+                disabled={activeStep === maxSteps - 1}
+              >
+                Next
+              </Button>
+            }
+            backButton={
+              <Button
+                size="small"
+                onClick={handleBack}
+                disabled={activeStep === 0}
+              >
+                Back
+              </Button>
+            }
+          />
         </Box>
-        <MobileStepper
-          variant="text"
-          steps={maxSteps}
-          position="static"
-          activeStep={activeStep}
-          nextButton={
-            <Button
-              size="small"
-              onClick={handleNext}
-              disabled={activeStep === maxSteps - 1}
-            >
-              Next
-            </Button>
-          }
-          backButton={
-            <Button
-              size="small"
-              onClick={handleBack}
-              disabled={activeStep === 0}
-            >
-              Back
-            </Button>
-          }
-        />
-      </Box>
-    </div>
+      </form>
+    </Container>
   );
 };
 

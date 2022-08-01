@@ -1,3 +1,4 @@
+import { TextField } from "@mui/material";
 import React from "react";
 import { useForm } from "react-hook-form";
 const Class = () => {
@@ -12,7 +13,15 @@ const Class = () => {
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* register your input into the hook by invoking the "register" function */}
-        <input defaultValue="test" {...register("example")} />
+
+        <TextField
+          defaultValue="test"
+          {...register("example")}
+          label="Filled success"
+          variant="filled"
+          color="success"
+          focused
+        />
         <br />
         {/* include validation with required or other standard HTML validation rules */}
         <input {...register("exampleRequired", { required: true })} />

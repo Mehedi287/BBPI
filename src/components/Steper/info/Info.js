@@ -15,7 +15,7 @@ const Info = ({ errors, register }) => {
             })}
             id="standard-search"
             label="Institute Name"
-            type="search"
+            type="name"
             variant="standard"
             sx={{ width: '100%' }}
             color="success"
@@ -32,7 +32,7 @@ const Info = ({ errors, register }) => {
             {...register("department", { required: true })}
             id="standard-search"
             label="Department"
-            type="search"
+            type="name"
             variant="standard"
             color="success"
             sx={{ width: '100%' }}
@@ -50,7 +50,7 @@ const Info = ({ errors, register }) => {
             {...register("semester", { required: true })}
             id="standard-search"
             label="Semester"
-            type="search"
+            type="name"
             variant="standard"
             color="success"
             sx={{ width: '100%' }}
@@ -68,7 +68,7 @@ const Info = ({ errors, register }) => {
             {...register("shift", { required: true })}
             id="standard-search"
             label="Shift"
-            type="search"
+            type="name"
             variant="standard"
             color="success"
             sx={{ width: '100%' }}
@@ -87,7 +87,7 @@ const Info = ({ errors, register }) => {
             label="Section"
             variant="standard"
             color="success"
-            type="search"
+            type="name"
             id="standard-search"
             sx={{ width: '100%' }}
           />

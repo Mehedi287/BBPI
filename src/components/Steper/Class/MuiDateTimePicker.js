@@ -3,17 +3,17 @@ import { Stack, TextField } from '@mui/material'
 import { TimePicker } from '@mui/x-date-pickers';
 import { useState } from 'react'
 
-const MuiDateTimePicker = () => {
-    const [selectedTime, setSelectedTime] = useState(null)
+const MuiDateTimePicker = ({ setValue, name, label, watch }) => {
 
     return (
-        <Stack spacing={4} sx={{ width: '250px' }}>
+        <Stack spacing={4} sx={{ width: '100%' }}>
 
             <TimePicker
-                label='Time Picker'
-                value={selectedTime}
+                label={label}
+                value={watch(name) ? watch(name) : null}
+                variant='standard'
                 onChange={newValue => {
-                    setSelectedTime(newValue)
+                    setValue(name)
                 }}
                 renderInput={params => <TextField {...params} />}
             />

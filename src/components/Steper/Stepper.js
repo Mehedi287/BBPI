@@ -76,6 +76,7 @@ const Stepper = () => {
             steps={maxSteps}
             position="static"
             activeStep={activeStep}
+            sx={{ mt: 5 }}
             nextButton={
               <Button
                 size="small"

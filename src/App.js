@@ -7,11 +7,13 @@ import Login from "./components/Login/Login";
 
 import ClassRoutines from "./components/ClassRoutines/ClassRoutines";
 import Stepper from "./components/Steper/Stepper";
+import SignUp from "./components/SignUp/SignUp";
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />}></Route>
+        <Route path="/signUp" element={<SignUp />}></Route>
         <Route path="/" element={<Home />}></Route>
         <Route path="home" element={<Home />}></Route>
 

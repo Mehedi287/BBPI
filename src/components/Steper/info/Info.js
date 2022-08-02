@@ -20,8 +20,8 @@ const MenuProps = {
 };
 
 const semesters = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th"];
-const shifts = ["1st", "2nd"];
-const sections = ["A", "B", "C", "D"];
+const shifts = ["None", "1st", "2nd"];
+const sections = ["None", "A", "B", "C", "D"];
 
 function getStyles(name, personName, theme) {
   return {

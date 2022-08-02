@@ -12,14 +12,19 @@ import Info from "./info/Info";
 import { Container } from "@mui/material";
 
 const Stepper = () => {
-  const { register, handleSubmit, watch, formState: { errors }, } = useForm();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
   const [activeStep, setActiveStep] = React.useState(0);
 
   const onSubmit = (data) => console.log(data);
 
   const steps = [
     {
-      element: <Info errors={errors} register={register}></Info>,
+      element: <Info watch={watch} errors={errors} register={register}></Info>,
     },
     {
       element: <Class errors={errors} register={register}></Class>,
@@ -31,20 +36,18 @@ const Stepper = () => {
   const handleNext = () => {
     if (activeStep === 0) {
       console.log(watch());
-      if (watch('institute')?.length &&
-        watch('department')?.length &&
-        watch('semester')?.length &&
-        watch('shift')?.length &&
-        watch('section')?.length) {
-
-        setActiveStep((prevActiveStep) => prevActiveStep + 1)
+      if (
+        watch("institute")?.length &&
+        watch("department")?.length &&
+        watch("semester")?.length &&
+        watch("shift")?.length &&
+        watch("section")?.length
+      ) {
+        setActiveStep((prevActiveStep) => prevActiveStep + 1);
       } else {
-        onSubmit(
-
-          <div className=""></div>
-        )
+        onSubmit(<div className=""></div>);
       }
-      return
+      return;
     }
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -53,11 +56,9 @@ const Stepper = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
-
   return (
     <Container>
       <form onSubmit={handleSubmit(onSubmit)}>
-
         <Box sx={{ flexGrow: 1 }}>
           <Paper
             square
@@ -66,11 +67,8 @@ const Stepper = () => {
               display: "flex",
               alignItems: "center",
             }}
-          >
-          </Paper>
-          <Box >
-            {steps[activeStep].element}
-          </Box>
+          ></Paper>
+          <Box>{steps[activeStep].element}</Box>
           <MobileStepper
             variant="text"
             steps={maxSteps}
@@ -82,7 +80,7 @@ const Stepper = () => {
                 size="small"
                 onClick={handleNext}
                 disabled={activeStep === maxSteps - 1}
-                type={activeStep === 0 ? 'submit' : 'button'}
+                type={activeStep === 0 ? "submit" : "button"}
               >
                 Next
               </Button>
@@ -92,7 +90,6 @@ const Stepper = () => {
                 size="small"
                 onClick={handleBack}
                 disabled={activeStep === 0}
-
               >
                 Back
               </Button>

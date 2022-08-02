@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import { useForm } from "react-hook-form";
+
 const PasswordTextField = ({ register, name }) => {
   const [type, setType] = useState("password");
   const [icon, setIcon] = useState(false);

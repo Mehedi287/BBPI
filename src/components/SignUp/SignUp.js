@@ -8,8 +8,7 @@ import PasswordTextField from "../ShareComponents/PasswordTextField/PasswordText
 const SignUp = () => {
   const {
     register,
-    handleSubmit,
-    watch,
+
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {

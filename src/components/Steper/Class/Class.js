@@ -1,20 +1,18 @@
 import { Grid, TextField } from "@mui/material";
 import React from "react";
-import { LocalizationProvider, TimePicker } from '@mui/x-date-pickers';
+import { LocalizationProvider } from "@mui/x-date-pickers";
 
 import { useState } from "react";
-import { createTheme, ThemeProvider, colors } from '@mui/material'
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 
 import MuiDateTimePicker from "./MuiDateTimePicker";
 const Class = ({ register, errors }) => {
-  const [value, setValue] = React.useState(null);
-
-  const [selectedTime, setSelectedTime] = useState(null)
+  const [selectedTime, setSelectedTime] = useState(null);
 
   console.log({
     selectedTime: selectedTime && selectedTime.toLocaleTimeString(),
-  })
+  });
 
   return (
     <div>
@@ -30,33 +28,32 @@ const Class = ({ register, errors }) => {
             label="Subject Name"
             type="name"
             variant="standard"
-            sx={{ width: '100%' }}
+            sx={{ width: "100%" }}
             color="success"
           />
           <div>
             <span className="text-red-700">
               {errors.subjectName?.type === "required" &&
-                "*institute name is required"} </span>
+                "*institute name is required"}{" "}
+            </span>
           </div>
-
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField
             {...register("subjectCode", { required: true })}
-
             label="Subject Code"
             type="number"
             variant="standard"
             color="success"
-            sx={{ width: '100%' }}
+            sx={{ width: "100%" }}
           />
 
           <div>
             <span className="text-red-700">
               {errors.department?.type === "required" &&
-                "*department name is required"} </span>
+                "*department name is required"}{" "}
+            </span>
           </div>
-
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField
@@ -66,15 +63,14 @@ const Class = ({ register, errors }) => {
             type="search"
             variant="standard"
             color="success"
-            sx={{ width: '100%' }}
+            sx={{ width: "100%" }}
           />
-
 
           <div>
             <span className="text-red-700">
-              {errors.semester && <p>*Semester name is required</p>} </span>
+              {errors.semester && <p>*Semester name is required</p>}{" "}
+            </span>
           </div>
-
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField
@@ -84,15 +80,14 @@ const Class = ({ register, errors }) => {
             type="search"
             variant="standard"
             color="success"
-            sx={{ width: '100%' }}
+            sx={{ width: "100%" }}
           />
-
 
           <div>
             <span className="text-red-700">
-              {errors.shift && <p>*Shift name is required</p>}</span>
+              {errors.shift && <p>*Shift name is required</p>}
+            </span>
           </div>
-
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField
@@ -102,7 +97,7 @@ const Class = ({ register, errors }) => {
             color="success"
             type="search"
             id="standard-search"
-            sx={{ width: '100%' }}
+            sx={{ width: "100%" }}
           />
 
           <div>
@@ -110,7 +105,6 @@ const Class = ({ register, errors }) => {
               {errors.section && <p>*Section name is required</p>}
             </span>
           </div>
-
         </Grid>
       </Grid>
 
@@ -118,7 +112,6 @@ const Class = ({ register, errors }) => {
         <MuiDateTimePicker />
       </LocalizationProvider>
     </div>
-
   );
 };
 

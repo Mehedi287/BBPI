@@ -1,91 +1,106 @@
-import { Box, TextField, Typography } from "@mui/material";
+import { Box, Grid, TextField, Typography } from "@mui/material";
 import React from "react";
 import { useForm } from "react-hook-form";
 
-const Info = () => {
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm();
-
-  const onSubmit = (data) => {
-    console.log(data);
-  };
+const Info = ({ errors, register }) => {
   return (
     <div>
-      <form className="from" onSubmit={handleSubmit(onSubmit)}>
-        <Box>
+      <div className="text-xl text-center my-5">Fill up form to  </div>
+
+      <Grid container spacing={2}>
+        <Grid item md={6} xs={12}>
           <TextField
-            {...register("Institute", {
+            {...register("institute", {
               required: true,
             })}
             id="standard-search"
-            label="Search field"
+            label="Institute Name"
             type="search"
             variant="standard"
-            sx={{ m: 1 }}
+            sx={{ width: '100%' }}
             color="success"
           />
-          {errors.Institute?.type === "required" &&
-            "institute name is required"}
-          <br />
+          <div>
+            <span className="text-red-700">
+              {errors.institute?.type === "required" &&
+                "*institute name is required"} </span>
+          </div>
 
+        </Grid>
+        <Grid item xs={12} md={6}>
           <TextField
-            {...register("Department", { required: true })}
+            {...register("department", { required: true })}
             id="standard-search"
             label="Department"
             type="search"
             variant="standard"
             color="success"
-            sx={{ m: 1 }}
+            sx={{ width: '100%' }}
           />
-          {errors.Department && (
-            <Typography>Department name is required</Typography>
-          )}
-          <br />
 
+          <div>
+            <span className="text-red-700">
+              {errors.department?.type === "required" &&
+                "*department name is required"} </span>
+          </div>
+
+        </Grid>
+        <Grid item xs={12} md={6}>
           <TextField
-            {...register("Semester", { required: true })}
+            {...register("semester", { required: true })}
             id="standard-search"
             label="Semester"
             type="search"
             variant="standard"
             color="success"
-            sx={{ m: 1 }}
+            sx={{ width: '100%' }}
           />
-          {errors.Semester && <p>Semester name is required</p>}
-          <br />
 
+
+          <div>
+            <span className="text-red-700">
+              {errors.semester && <p>*Semester name is required</p>} </span>
+          </div>
+
+        </Grid>
+        <Grid item xs={12} md={6}>
           <TextField
-            {...register("Shift", { required: true })}
+            {...register("shift", { required: true })}
             id="standard-search"
             label="Shift"
             type="search"
             variant="standard"
             color="success"
-            sx={{ m: 1 }}
+            sx={{ width: '100%' }}
           />
-          {errors.Shift && <p>Shift name is required</p>}
-          <br />
+
+
+          <div>
+            <span className="text-red-700">
+              {errors.shift && <p>*Shift name is required</p>}</span>
+          </div>
+
+        </Grid>
+        <Grid item xs={12} md={6}>
           <TextField
-            {...register("Section", { required: true })}
+            {...register("section", { required: true })}
             label="Section"
             variant="standard"
             color="success"
             type="search"
             id="standard-search"
-            sx={{ m: 1 }}
+            sx={{ width: '100%' }}
           />
 
-          {errors.Section && <p>Section name is required</p>}
-          <br />
-          <p>{errors.mail?.message}</p>
-          <br />
-          <TextField value={"next"} type={"submit"}></TextField>
-        </Box>
-      </form>
-    </div>
+          <div>
+            <span className="text-red-700">
+              {errors.section && <p>*Section name is required</p>}
+            </span>
+          </div>
+
+        </Grid>
+      </Grid>
+    </div >
   );
 };
 

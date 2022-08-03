@@ -12,22 +12,17 @@ import Info from "./info/Info";
 import { Container } from "@mui/material";
 
 const Stepper = () => {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit, watch, setValue, formState: { errors }, } = useForm();
   const [activeStep, setActiveStep] = React.useState(0);
 
   const onSubmit = (data) => console.log(data);
 
   const steps = [
     {
-      element: <Info watch={watch} errors={errors} register={register}></Info>,
+      element: <Info errors={errors} watch={watch} register={register}></Info>,
     },
     {
-      element: <Class errors={errors} register={register}></Class>,
+      element: <Class errors={errors} watch={watch} setValue={setValue} register={register}></Class>,
     },
   ];
 
@@ -74,7 +69,7 @@ const Stepper = () => {
             steps={maxSteps}
             position="static"
             activeStep={activeStep}
-            sx={{ mt: 5 }}
+            sx={{ mt: 2 }}
             nextButton={
               <Button
                 size="small"

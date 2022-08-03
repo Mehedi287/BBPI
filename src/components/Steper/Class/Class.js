@@ -1,18 +1,41 @@
-import { Grid, TextField } from "@mui/material";
+import { FormControl, Grid, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import React from "react";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 
-import { useState } from "react";
+ 
 
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 
 import MuiDateTimePicker from "./MuiDateTimePicker";
-const Class = ({ register, errors }) => {
-  const [selectedTime, setSelectedTime] = useState(null);
+const Class = ({ register, errors, watch, setValue }) => {
 
-  console.log({
-    selectedTime: selectedTime && selectedTime.toLocaleTimeString(),
-  });
+  // const [selectedTime, setSelectedTime] = useState(null)
+
+  // console.log({
+  //   selectedTime: selectedTime && selectedTime.toLocaleTimeString(),
+  // })
+  // 
+  // handle Day input
+  const ITEM_HEIGHT = 48;
+  const ITEM_PADDING_TOP = 8;
+  const MenuProps = {
+    PaperProps: {
+      style: {
+        maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+        width: 250,
+      },
+    },
+  };
+
+  const names = [
+    "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"
+  ];
+  // const handleChange = (event) => {
+  //   const {
+  //     target: { value },
+  //   } = event; 
+  // };
+
 
   return (
     <div>
@@ -57,10 +80,10 @@ const Class = ({ register, errors }) => {
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField
-            {...register("semester", { required: true })}
-            id="standard-search"
-            label="Semester"
-            type="search"
+            {...register("teacherName", { required: true })}
+
+            label="Teacher Name"
+            type="name"
             variant="standard"
             color="success"
             sx={{ width: "100%" }}
@@ -72,45 +95,47 @@ const Class = ({ register, errors }) => {
             </span>
           </div>
         </Grid>
-        <Grid item xs={12} md={6}>
-          <TextField
-            {...register("shift", { required: true })}
-            id="standard-search"
-            label="Shift"
-            type="search"
-            variant="standard"
-            color="success"
-            sx={{ width: "100%" }}
-          />
 
-          <div>
-            <span className="text-red-700">
-              {errors.shift && <p>*Shift name is required</p>}
-            </span>
-          </div>
+        <Grid item xs={12} md={6}>
+          <FormControl variant="standard" sx={{ width: '100%' }}>
+            <InputLabel id="demo-simple-select-filled-label">Select day</InputLabel>
+            <Select
+              labelId="demo-multiple-name-labels"
+              id="demo-multiple-name"
+              sx={{ p: 0 }}
+              label="Select Day"
+              {...register("day", {
+                required: true,
+              })}
+              value={watch('day') ? watch('day') : ''}
+              MenuProps={MenuProps}
+            >
+              {names.map((name) => (
+                <MenuItem
+                  key={name}
+                  value={name}
+                >
+                  {name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+
         </Grid>
         <Grid item xs={12} md={6}>
-          <TextField
-            {...register("section", { required: true })}
-            label="Section"
-            variant="standard"
-            color="success"
-            type="search"
-            id="standard-search"
-            sx={{ width: "100%" }}
-          />
-
-          <div>
-            <span className="text-red-700">
-              {errors.section && <p>*Section name is required</p>}
-            </span>
-          </div>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <MuiDateTimePicker register={register} label="Start Time" watch={watch} setValue={setValue} name='startTime' />
+          </LocalizationProvider>
         </Grid>
+        <Grid item xs={12} md={6}>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <MuiDateTimePicker label='End Time' register={register} watch={watch} setValue={setValue} name='endTime' />
+          </LocalizationProvider>
+        </Grid>
+
       </Grid>
 
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <MuiDateTimePicker />
-      </LocalizationProvider>
+
     </div>
   );
 };

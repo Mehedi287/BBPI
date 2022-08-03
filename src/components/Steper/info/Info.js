@@ -41,7 +41,7 @@ const Info = ({ errors, register, watch }) => {
             })}
             id="standard-search"
             label="Institute Name"
-            type="search"
+            type="name"
             variant="standard"
             sx={{ width: "100%" }}
             color="success"
@@ -58,7 +58,7 @@ const Info = ({ errors, register, watch }) => {
             {...register("department", { required: true })}
             id="standard-search"
             label="Department"
-            type="search"
+            type="name"
             variant="standard"
             color="success"
             sx={{ width: "100%" }}

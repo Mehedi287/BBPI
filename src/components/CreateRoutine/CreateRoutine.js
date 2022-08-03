@@ -1,10 +1,14 @@
 import React from "react";
 import Box from "@mui/material/Box";
-import { useTheme } from "@mui/material/styles";
+ 
+ 
+ 
+ 
+import Button from '@mui/material/Button';
+ 
 import MobileStepper from "@mui/material/MobileStepper";
-import Paper from "@mui/material/Paper";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
+ 
+ 
 import { useForm } from "react-hook-form";
 import Class from "./Class/Class";
 
@@ -52,7 +56,9 @@ const CreateRoutine = () => {
   ];
 
   const maxSteps = steps.length;
-
+//------------
+ 
+  //----------------
   const handleNext = () => {
     if (activeStep === 0) {
       console.log(watch());
@@ -76,12 +82,9 @@ const CreateRoutine = () => {
         })
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
       } else {
-        onSubmit(
-
-          <div className=""></div>
-        )
+        onSubmit(<div className=""></div>);
       }
-      return
+      return;
     }
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -89,7 +92,6 @@ const CreateRoutine = () => {
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
-
 
   return (
     <Container>
@@ -120,7 +122,7 @@ const CreateRoutine = () => {
                 size="small"
                 onClick={handleNext}
                 disabled={activeStep === maxSteps - 1}
-                type={activeStep === 0 ? 'submit' : 'button'}
+                type={activeStep === 0 ? "submit" : "button"}
               >
                 Next
               </Button>
@@ -130,7 +132,6 @@ const CreateRoutine = () => {
                 size="small"
                 onClick={handleBack}
                 disabled={activeStep === 0}
-
               >
                 Back
               </Button>

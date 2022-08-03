@@ -10,12 +10,24 @@ import Class from "./Class/Class";
 
 import Info from "./info/Info";
 import { Container } from "@mui/material";
-
+import { useDispatch } from 'react-redux'
+import { addClasses, addInfo } from "../../ManageState/DataSlice/dataSlice";
 const Stepper = () => {
-  const { register, handleSubmit, watch, setValue, formState: { errors }, } = useForm();
+  const { register, handleSubmit, watch, setValue, reset, formState: { errors }, } = useForm();
+  const dispatch = useDispatch();
   const [activeStep, setActiveStep] = React.useState(0);
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = ({ subjectName, subjectCode, teacherName, day, startTime, endTime }) => {
+    if (activeStep) {
+      console.log(typeof new Date(startTime).toString(),);
+      const data = {
+        subjectName, subjectCode, teacherName, day, startTime: new Date(startTime).toString(), endTime: new Date(endTime).toString()
+      }
+      dispatch(addClasses(data))
+      reset();
+
+    }
+  };
 
   const steps = [
     {
@@ -31,13 +43,21 @@ const Stepper = () => {
   const handleNext = () => {
     if (activeStep === 0) {
       console.log(watch());
-      if (watch('institute')?.length &&
+      if (
+        watch('institute')?.length &&
         watch('department')?.length &&
         watch('semester')?.length &&
         watch('shift')?.length &&
-        watch('section')?.length) {
-
-        setActiveStep((prevActiveStep) => prevActiveStep + 1)
+        watch('section')?.length
+      ) {
+        dispatch(addInfo({
+          institute: watch('institute'),
+          department: watch('department'),
+          semester: watch('semester'),
+          shift: watch('shift'),
+          section: watch('section'),
+        }))
+        setActiveStep((prevActiveStep) => prevActiveStep + 1);
       } else {
         onSubmit(
 
@@ -58,16 +78,8 @@ const Stepper = () => {
     <Container>
       <form onSubmit={handleSubmit(onSubmit)}>
 
-        <Box sx={{ flexGrow: 1 }}>
-          <Paper
-            square
-            elevation={1}
-            sx={{
-              display: "flex",
-              alignItems: "center",
-            }}
-          >
-          </Paper>
+        <Box className="h-screen flex flex-col justify-between ">
+
           <Box >
             {steps[activeStep].element}
           </Box>

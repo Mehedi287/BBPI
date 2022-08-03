@@ -1,22 +1,35 @@
 
 import { Stack, TextField } from '@mui/material'
-import { TimePicker } from '@mui/x-date-pickers';
-import { useState } from 'react'
+import { MobileTimePicker, TimePicker } from '@mui/x-date-pickers';
+const MuiDateTimePicker = ({ setValue, name, errors, label, watch, register }) => {
 
-const MuiDateTimePicker = ({ setValue, name, label, watch }) => {
 
     return (
-        <Stack spacing={4} sx={{ width: '100%' }}>
+        <Stack spacing={0} sx={{ width: '100%' }}>
 
-            <TimePicker
+            <MobileTimePicker
                 label={label}
                 value={watch(name) ? watch(name) : null}
                 variant='standard'
                 onChange={newValue => {
-                    setValue(name)
+                    console.log(newValue.toString());
+                    setValue(name, newValue.toString())
                 }}
-                renderInput={params => <TextField {...params} />}
+                renderInput={params => <TextField color="success"  {...register(name, {
+                    required: true,
+                })} {...params} />}
+
             />
+            <div>
+                <span className="text-red-700">
+                    {
+                        watch(name)?.length ? '' : errors[name]?.type === "required" &&
+                            `* ${label} is required`
+
+                    }
+                </span>
+            </div>
+
         </Stack>
     )
 }

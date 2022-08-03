@@ -124,12 +124,12 @@ const Class = ({ mainData, register, errors, watch, setValue }) => {
           </FormControl>
 
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={6} md={6}>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <MuiDateTimePicker register={register} errors={errors} label="Start Time" watch={watch} setValue={setValue} name='startTime' />
           </LocalizationProvider>
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={6} md={6}>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <MuiDateTimePicker label='End Time' register={register} errors={errors} watch={watch} setValue={setValue} name='endTime' />
           </LocalizationProvider>

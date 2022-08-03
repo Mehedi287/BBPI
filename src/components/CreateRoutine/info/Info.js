@@ -5,8 +5,6 @@ import { useForm } from "react-hook-form";
 const Info = ({ errors, register }) => {
   return (
     <div>
-      <div className="text-xl text-center my-5">Fill up form to  </div>
-
       <Grid container spacing={2}>
         <Grid item md={6} xs={12}>
           <TextField

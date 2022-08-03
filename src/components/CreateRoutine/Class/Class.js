@@ -7,7 +7,7 @@ import { createTheme, ThemeProvider, colors } from '@mui/material'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
 import MuiDateTimePicker from "./MuiDateTimePicker";
-const Class = ({ register, errors, watch, setValue }) => {
+const Class = ({ mainData, register, errors, watch, setValue }) => {
 
   // const [selectedTime, setSelectedTime] = useState(null)
 
@@ -40,7 +40,7 @@ const Class = ({ register, errors, watch, setValue }) => {
   return (
     <div>
       {/* register your input into the hook by invoking the "register" function */}
-      <h2 className="text-2xl text-center py-5"> Enter Class routine</h2>
+
       <Grid container spacing={2}>
         <Grid item md={6} xs={12}>
           <TextField
@@ -135,6 +135,7 @@ const Class = ({ register, errors, watch, setValue }) => {
           </LocalizationProvider>
         </Grid>
         <Grid item xs={12} md={6}>
+          <h2 className="  mb-3"> Total added class {mainData.classes?.length}</h2>
           <Button type="submit" variant="outlined" >Add another class</Button>
         </Grid>
 

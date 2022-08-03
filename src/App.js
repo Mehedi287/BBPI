@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./components/Login/Login";
 
 import ClassRoutines from "./components/ClassRoutines/ClassRoutines";
-import Stepper from "./components/Steper/Stepper";
+import Stepper from "./components/CreateRoutine/CreateRoutine";
 function App() {
   return (
     <BrowserRouter>

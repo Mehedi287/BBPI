@@ -13,14 +13,13 @@ import { useForm } from "react-hook-form";
 import Class from "./Class/Class";
 
 import Info from "./info/Info";
-import { Container } from "@mui/material";
+import { Container, Step, StepLabel, Stepper } from "@mui/material";
 import { useDispatch } from 'react-redux'
-import { addClasses, addInfo } from "../../ManageState/DataSlice/dataSlice";
- 
-const Stepper = () => {
+import { useState } from "react";
+const CreateRoutine = () => {
   const { register, handleSubmit, watch, setValue, reset, formState: { errors }, } = useForm();
-  const dispatch = useDispatch();
   const [activeStep, setActiveStep] = React.useState(0);
+  const [mainData, setMainData] = useState({ classes: [] })
 
   const onSubmit = ({ subjectName, subjectCode, teacherName, day, startTime, endTime }) => {
     if (activeStep) {
@@ -28,18 +27,31 @@ const Stepper = () => {
       const data = {
         subjectName, subjectCode, teacherName, day, startTime: new Date(startTime).toString(), endTime: new Date(endTime).toString()
       }
-      dispatch(addClasses(data))
+      setMainData(before => {
+
+        return {
+          ...before, classes: [...before.classes, data,]
+        }
+      }
+      )
       reset();
 
     }
+    console.log({ mainData });
   };
 
   const steps = [
     {
+      label: 'Add basic information of your institute',
       element: <Info errors={errors} watch={watch} register={register}></Info>,
     },
     {
-      element: <Class errors={errors} watch={watch} setValue={setValue} register={register}></Class>,
+      label: "Add classes",
+      element: <Class errors={errors} watch={watch} setValue={setValue} register={register} mainData={mainData}></Class>,
+    },
+    {
+      label: "Preview Routine",
+      element: <div errors={errors} watch={watch} setValue={setValue} register={register}>Tor main khai </div>,
     },
   ];
 
@@ -57,13 +69,17 @@ const Stepper = () => {
         watch('shift')?.length &&
         watch('section')?.length
       ) {
-        dispatch(addInfo({
-          institute: watch('institute'),
-          department: watch('department'),
-          semester: watch('semester'),
-          shift: watch('shift'),
-          section: watch('section'),
-        }))
+        setMainData(before => {
+          return {
+            ...before,
+            institute: watch('institute'),
+            department: watch('department'),
+            semester: watch('semester'),
+            shift: watch('shift'),
+            section: watch('section'),
+
+          }
+        })
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
       } else {
         onSubmit(<div className=""></div>);
@@ -82,9 +98,18 @@ const Stepper = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
 
         <Box className="h-screen flex flex-col justify-between ">
-      
-          <Box >
-            {steps[activeStep].element}
+
+          <Box className="pt-1 md:pt-10">
+            <Stepper activeStep={activeStep} alternativeLabel>
+              {steps.map((ele) => (
+                <Step key={ele.label}>
+                  <StepLabel>{ele.label}</StepLabel>
+                </Step>
+              ))}
+            </Stepper>
+            <Box className="pt-10">
+              {steps[activeStep].element}
+            </Box>
           </Box>
           <MobileStepper
             variant="text"
@@ -118,4 +143,4 @@ const Stepper = () => {
   );
 };
 
-export default Stepper;
+export default CreateRoutine;

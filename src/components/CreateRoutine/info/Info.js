@@ -31,9 +31,6 @@ function getStyles(name, personName, theme) {
 const Info = ({ errors, register, watch }) => {
   return (
     <div>
-      <div className="text-xl  
-       text-center bold my-5">Student Information </div>
-
       <Grid container spacing={2}>
         <Grid item md={6} xs={12}>
           <TextField

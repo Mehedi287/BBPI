@@ -2,12 +2,11 @@ import logo from "./logo.svg";
 import "./App.css";
 import Home from "./components/Home/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import SignUp from"./components/SignUp/SignUp"
 import Login from "./components/Login/Login";
 
 import ClassRoutines from "./components/ClassRoutines/ClassRoutines";
-import Stepper from "./components/Steper/Stepper";
-import SignUp from "./components/SignUp/SignUp";
+import CreateRoutine from "./components/CreateRoutine/CreateRoutine";
 function App() {
   return (
     <BrowserRouter>
@@ -19,7 +18,7 @@ function App() {
 
         <Route path="classRoutines" element={<ClassRoutines />}></Route>
 
-        <Route path="stepper" element={<Stepper />}></Route>
+        <Route path="stepper" element={<CreateRoutine />}></Route>
       </Routes>
     </BrowserRouter>
   );

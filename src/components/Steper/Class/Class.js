@@ -1,4 +1,4 @@
-import { FormControl, Grid, InputLabel, MenuItem, Select, TextField } from "@mui/material";
+import { Button, FormControl, Grid, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import React from "react";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 
@@ -65,7 +65,7 @@ const Class = ({ register, errors, watch, setValue }) => {
           <TextField
             {...register("subjectCode", { required: true })}
             label="Subject Code"
-            type="number"
+            type="text"
             variant="standard"
             color="success"
             sx={{ width: "100%" }}
@@ -124,13 +124,16 @@ const Class = ({ register, errors, watch, setValue }) => {
         </Grid>
         <Grid item xs={12} md={6}>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <MuiDateTimePicker register={register} label="Start Time" watch={watch} setValue={setValue} name='startTime' />
+            <MuiDateTimePicker register={register} errors={errors} label="Start Time" watch={watch} setValue={setValue} name='startTime' />
           </LocalizationProvider>
         </Grid>
         <Grid item xs={12} md={6}>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <MuiDateTimePicker label='End Time' register={register} watch={watch} setValue={setValue} name='endTime' />
+            <MuiDateTimePicker label='End Time' register={register} errors={errors} watch={watch} setValue={setValue} name='endTime' />
           </LocalizationProvider>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <Button type="submit" variant="outlined" >Add another class</Button>
         </Grid>
 
       </Grid>

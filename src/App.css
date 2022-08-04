@@ -32,7 +32,12 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+.tag {
+  @apply bg-purple-200 p-1 px-2 rounded-md;
 }

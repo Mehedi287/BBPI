@@ -16,6 +16,7 @@ import Info from "./info/Info";
 import { Container, Step, StepLabel, Stepper } from "@mui/material";
 import { useDispatch } from 'react-redux'
 import { useState } from "react";
+import PreviewRoutine from "./PreviewRoutine/PreviewRoutine";
 const CreateRoutine = () => {
   const { register, handleSubmit, watch, setValue, reset, formState: { errors }, } = useForm();
   const [activeStep, setActiveStep] = React.useState(0);
@@ -51,7 +52,7 @@ const CreateRoutine = () => {
     },
     {
       label: "Preview Routine",
-      element: <div errors={errors} watch={watch} setValue={setValue} register={register}>Tor main khai </div>,
+      element: <PreviewRoutine  mainData={mainData}>Tor main khai </PreviewRoutine>
     },
   ];
 

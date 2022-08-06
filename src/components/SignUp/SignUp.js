@@ -19,7 +19,7 @@ const SignUp = () => {
       <div className="h-screen  flex items-center justify-center flex-col ">
         <div className="w-11/12 shadow-md md:w-1/3   px-3  rounded-lg">
           <img className="img-fluid" src={signImg} alt="" />
-          <h2 className="font-bold text-xl mb-2">SignUp </h2>
+          <h2 className="font-bold text-2xl mb-2">SignUp </h2>
           <hr className="w-10 border-t-4 rounded-full" />
           <form className="flex flex-col" onSubmit={onSubmit}>
             <input

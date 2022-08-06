@@ -22,7 +22,7 @@ const Login = () => {
     <div className="h-screen flex items-center justify-center flex-col ">
       <div className="w-11/12	shadow-md md:w-1/3  px-3 py-8 rounded-lg">
         <img className="img-fluid" src={loginimg} alt="" />
-        <h2 className="font-bold text-xl mb-2">Login</h2>
+        <h2 className="font-bold text-2xl mb-2">Login</h2>
         <hr className="w-10   border-t-4 rounded-full" />
         <form className="flex flex-col">
           <input
